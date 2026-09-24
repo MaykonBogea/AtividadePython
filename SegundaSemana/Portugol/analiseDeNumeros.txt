@@ -1,0 +1,46 @@
+programa
+{
+    funcao inicio()
+    {
+        inteiro i
+        real numero
+        real soma = 0
+        real media
+        real maior
+        real menor
+
+        para (i = 1; i <= 5; i++)
+        {
+            escreva("Digite o ", i, "º número: ")
+            leia(numero)
+
+            soma = soma + numero
+
+            se (i == 1)
+            {
+                maior = numero
+                menor = numero
+            }
+            senao
+            {
+                se (numero > maior)
+                {
+                    maior = numero
+                }
+
+                se (numero < menor)
+                {
+                    menor = numero
+                }
+            }
+        }
+
+        media = soma / 5
+
+        escreva("\n=== RESULTADO ===\n")
+        escreva("Soma: ", soma, "\n")
+        escreva("Média: ", media, "\n")
+        escreva("Maior: ", maior, "\n")
+        escreva("Menor: ", menor, "\n")
+    }
+}

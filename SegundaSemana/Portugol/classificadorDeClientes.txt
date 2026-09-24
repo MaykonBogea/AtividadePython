@@ -1,0 +1,35 @@
+programa
+{
+    funcao inicio()
+    {
+        inteiro idade
+        real renda
+
+        escreva("Digite sua idade: ")
+        leia(idade)
+
+        escreva("Digite sua renda: R$ ")
+        leia(renda)
+
+        se (idade < 18)
+        {
+            escreva("Categoria: Bronze")
+        }
+        senao se (renda < 2000)
+        {
+            escreva("Categoria: Bronze")
+        }
+        senao se (renda < 5000)
+        {
+            escreva("Categoria: Prata")
+        }
+        senao se (renda < 10000)
+        {
+            escreva("Categoria: Ouro")
+        }
+        senao
+        {
+            escreva("Categoria: Diamante")
+        }
+    }
+}

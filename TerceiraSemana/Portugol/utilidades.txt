@@ -1,0 +1,34 @@
+funcao real converter_temperatura(real celsius)
+inicio
+    retorne (celsius * 9 / 5) + 32
+fimfuncao
+
+
+funcao logico validar_senha(cadeia senha)
+inicio
+    retorne comprimento(senha) >= 8
+fimfuncao
+
+
+funcao real caixa(real precos[], inteiro quantidade)
+var
+    real total
+    inteiro i
+inicio
+    total <- 0
+
+    para i de 0 ate quantidade - 1 faca
+        total <- total + precos[i]
+    fimpara
+
+    retorne total
+fimfuncao
+
+
+funcao ficha_aluno(cadeia nome, inteiro idade, cadeia curso, real nota)
+inicio
+    escreval("Nome: ", nome)
+    escreval("Idade: ", idade)
+    escreval("Curso: ", curso)
+    escreval("Nota: ", nota)
+fimfuncao

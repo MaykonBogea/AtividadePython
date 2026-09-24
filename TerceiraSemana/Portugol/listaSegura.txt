@@ -1,0 +1,10 @@
+funcao lista_segura(inteiro lista[], inteiro tamanho, inteiro item, inteiro nova_lista[])
+var
+    inteiro i
+inici
+    para i de 0 ate tamanho - 1 faca
+        nova_lista[i] <- lista[i]
+    fimpara
+    
+    nova_lista[tamanho] <- item
+fimfuncao
