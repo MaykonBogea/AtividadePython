@@ -1,0 +1,161 @@
+algoritmo "produtos_portugal"
+
+var
+    nome: vetor[1..100] de caractere
+    preco: vetor[1..100] de real
+    categoria: vetor[1..100] de caractere
+
+    categorias_unicas: vetor[1..100] de caractere
+    quantidade, i, j, total_categorias: inteiro
+    auxiliar_preco: real
+    auxiliar_nome, auxiliar_categoria: caractere
+    menor_preco, maior_preco, soma, media: real
+    valor_filtro: real
+    encontrou: logico
+
+inicio
+
+    // 1. CADASTRO
+    escreva("Quantidade de produtos: ")
+    leia(quantidade)
+
+    para i de 1 ate quantidade faca
+        escreva("Nome: ")
+        leia(nome[i])
+
+        escreva("Preco: ")
+        leia(preco[i])
+
+        escreva("Categoria: ")
+        leia(categoria[i])
+    fimpara
+
+    // 2. FILTRAGEM POR PREÇO
+    escreva("Valor para filtragem: ")
+    leia(valor_filtro)
+
+    escreva("Produtos acima do valor:")
+
+    para i de 1 ate quantidade faca
+        se preco[i] > valor_filtro entao
+            escreva(nome[i], " - R$ ", preco[i])
+        fimse
+    fimpara
+
+    escreva("Produtos abaixo do valor:")
+
+    para i de 1 ate quantidade faca
+        se preco[i] < valor_filtro entao
+            escreva(nome[i], " - R$ ", preco[i])
+        fimse
+    fimpara
+
+    // 3. ORDENAÇÃO CRESCENTE PELO MÉTODO DA BOLHA
+    // Trocar também o nome e a categoria mantém os dados associados.
+
+    para i de 1 ate quantidade - 1 faca
+        para j de 1 ate quantidade - i faca
+
+            se preco[j] > preco[j + 1] entao
+
+                auxiliar_preco <- preco[j]
+                preco[j] <- preco[j + 1]
+                preco[j + 1] <- auxiliar_preco
+
+                auxiliar_nome <- nome[j]
+                nome[j] <- nome[j + 1]
+                nome[j + 1] <- auxiliar_nome
+
+                auxiliar_categoria <- categoria[j]
+                categoria[j] <- categoria[j + 1]
+                categoria[j + 1] <- auxiliar_categoria
+
+            fimse
+
+        fimpara
+    fimpara
+
+    escreva("Produtos em ordem crescente:")
+
+    para i de 1 ate quantidade faca
+        escreva(nome[i], " - R$ ", preco[i])
+    fimpara
+
+    // 4. ORDENAÇÃO DECRESCENTE
+    // Percorrer o vetor crescente de trás para frente.
+
+    escreva("Produtos em ordem decrescente:")
+
+    para i de quantidade ate 1 passo -1 faca
+        escreva(nome[i], " - R$ ", preco[i])
+    fimpara
+
+    // 5. SIMULAÇÃO DE CONJUNTO
+    // Adicionar uma categoria somente se ela ainda não existir.
+
+    total_categorias <- 0
+
+    para i de 1 ate quantidade faca
+
+        encontrou <- falso
+
+        para j de 1 ate total_categorias faca
+            se categoria[i] = categorias_unicas[j] entao
+                encontrou <- verdadeiro
+            fimse
+        fimpara
+
+        se encontrou = falso entao
+            total_categorias <- total_categorias + 1
+            categorias_unicas[total_categorias] <- categoria[i]
+        fimse
+
+    fimpara
+
+    escreva("Categorias únicas:")
+
+    para i de 1 ate total_categorias faca
+        escreva(categorias_unicas[i])
+    fimpara
+
+    // 6. ESTATÍSTICAS
+    // Equivalente a min(), max() e sum() / len().
+
+    se quantidade > 0 entao
+
+        menor_preco <- preco[1]
+        maior_preco <- preco[1]
+        soma <- 0
+
+        para i de 1 ate quantidade faca
+
+            se preco[i] < menor_preco entao
+                menor_preco <- preco[i]
+            fimse
+
+            se preco[i] > maior_preco entao
+                maior_preco <- preco[i]
+            fimse
+
+            soma <- soma + preco[i]
+
+        fimpara
+
+        media <- soma / quantidade
+
+        // Equivalente conceitual à tupla imutável:
+        // (menor_preco, maior_preco, media)
+
+        escreva("Menor preço: R$ ", menor_preco)
+        escreva("Maior preço: R$ ", maior_preco)
+        escreva("Média dos preços: R$ ", media)
+
+    senao
+        escreva("Não há produtos cadastrados.")
+    fimse
+
+    // 7. RELATÓRIO FINAL
+    // Em Portugol, escreva apresenta os dados formatados.
+    // Não existe f-string nativa como a do Python.
+
+fimalgoritmo
